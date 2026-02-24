@@ -3,67 +3,96 @@
 <head>
     <title>Ödev3</title>
 
-
+    <style>
+        h1{
+            text-align:center;
+            
+        }
+        p{
+            font-weight:bold;
+        }
+       
+    </style>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" 
           integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" 
           crossorigin="anonymous">
 </head>
 <body>
+    
 
+    <h1>Resim Galerisi</h1>
+    <br />
+    <br />
     <div class="container text-center">
-        <div class="row justify-content-start">
-            <div class="col-4">
-                <img src="https://picsum.photos/id/111/300/400" alt="Alternate Text" />
-                <div class="col-4">
-                    <img src="https://picsum.photos/id/187/300/400" alt="Alternate Text" />
-                </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-4">
-                <img src="https://picsum.photos/id/113/300/400" alt="Alternate Text" />
+        <div class="row">
+            <div class="col">
+                <img src="https://picsum.photos/id/111/600/400" alt="Alternate Text"
+                     class="img-fluid gallery-img"
+                     data-bs-toggle="modal"
+                     data-bs-target="#imageModal"
+                     data-img="https://picsum.photos/id/111/1200/1000" />
+                <p>Commodo ea invidunt tempor eum praesent ea duo elitr consetetur </p>
             </div>
-            <div class="col-4">
-                <img src="https://picsum.photos/id/123/300/400" alt="Alternate Text" />
-            </div>
-        </div>
-        <div class="row justify-content-end">
-            <div class="col-4">
-                <img src="https://picsum.photos/id/244/300/400" alt="Alternate Text" />
-            </div>
-            <div class="col-4">
-                <img src="https://picsum.photos/id/546/300/400" alt="Alternate Text" />
+            <div class="col">
+                <img src="https://picsum.photos/id/123/600/400" alt="Alternate Text"
+                     class="img-fluid gallery-img"
+                     data-bs-toggle="modal"
+                     data-bs-target="#imageModal"
+                     data-img="https://picsum.photos/id/123/1200/1000"/>
+
+                <p>Erat duis stet aliquyam nonumy elitr sanctus gubergren lobortis assum </p>
             </div>
         </div>
-        <div class="row justify-content-around">
-            <div class="col-4">
-                <img src="https://picsum.photos/id/333/300/400" alt="Alternate Text" />
+        <div class="row">
+            <div class="col">
+                <img src="https://picsum.photos/id/136/600/400" alt="Alternate Text"
+                     class="img-fluid gallery-img"
+                     data-bs-toggle="modal"
+                     data-bs-target="#imageModal"
+                     data-img="https://picsum.photos/id/136/1200/1000"/>
+
+                <p>Sed diam ut ea aliquyam feugiat tincidunt rebum nihil et </p>
             </div>
-            <div class="col-4">
-                <img src="https://picsum.photos/id/234/300/400" alt="Alternate Text" />
+            <div class="col">
+                <img src="https://picsum.photos/id/444/600/400" alt="Alternate Text"
+                     class="img-fluid gallery-img"
+                     data-bs-toggle="modal"
+                     data-bs-target="#imageModal"
+                     data-img="https://picsum.photos/id/444/1200/1000"/>
+
+                <p> Ut diam et dolor lorem</p>
             </div>
-        </div>
-        <div class="row justify-content-between">
-            <div class="col-4">
-                <img src="https://picsum.photos/id/434/300/400" alt="Alternate Text" />
-            </div>
-            <div class="col-4">
-                <img src="https://picsum.photos/id/325/300/400" alt="Alternate Text" />
-            </div>
-        </div>
-        <div class="row justify-content-evenly">
-            <div class="col-4">
-                <img src="https://picsum.photos/id/167/300/400" alt="Alternate Text" />
-            </div>
-            <div class="col-4">
-                <img src="https://picsum.photos/id/447/300/400" alt="Alternate Text" />
+            <div class="col">
+                <img src="https://picsum.photos/id/218/600/400" alt="Alternate Text"
+                     class="img-fluid gallery-img"
+                     data-bs-toggle="modal"
+                     data-bs-target="#imageModal"
+                     data-img="https://picsum.photos/id/218/1200/1000"/>
+
+                <p>Rebum ipsum eos lorem sea diam voluptua sit sadipscing iusto minim sed </p>
             </div>
         </div>
     </div>
 
 
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
 
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Fotoðraf Önizleme</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+                </div>
 
+                <div class="modal-body text-center">
+                    <img id="modalImage" src="" class="img-fluid rounded" alt="">
+                    <p class="mt-3 mb-0" id="modalCaption"></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
 
@@ -77,6 +106,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
             integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
             crossorigin="anonymous"></script>
+
+
+    <script>
+        document.querySelectorAll(".gallery-img").forEach(img => {
+            img.addEventListener("click", function () {
+                document.getElementById("modalImage").src = this.dataset.img;
+
+                const caption = this.parentElement.querySelector("p")?.textContent || "";
+                document.getElementById("modalCaption").textContent = caption;
+            });
+        });
+    </script>
 
 </body>
 </html>
